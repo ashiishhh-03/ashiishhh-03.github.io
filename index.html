@@ -1,269 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ashish Khandelwal — UI/UX Portfolio</title>
 
-  <!-- Google fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --bg-1: #eef2ff;
-      --bg-2: #f7f9fc;
-      --accent-1: #6a11cb;
-      --accent-2: #2575fc;
-      --muted: #687089;
-      --card-bg: rgba(255,255,255,0.75);
-      --glass-border: rgba(255,255,255,0.18);
-      --glass-shadow: 0 10px 40px rgba(20,20,40,0.08);
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
-      background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
-      color:#0f1724;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.45;
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #eef1f8;
+      color: #1a1a1a;
+      overflow-x: hidden;
+      line-height: 1.6;
     }
 
-    /* Layout container */
-    .wrap{
-      max-width:1100px;
-      margin:32px auto;
-      padding:24px;
+    /* ================= HEADER ================= */
+    header {
+      padding: 120px 20px 140px;
+      text-align: center;
+      background: linear-gradient(135deg,#6a11cb,#2575fc);
+      color: white;
+      position: relative;
+      overflow: hidden;
     }
 
-    /* Premium gradient header */
-    header.premium{
-      border-radius:16px;
-      padding:64px 28px;
-      display:flex;
-      gap:28px;
-      align-items:center;
-      background: linear-gradient(135deg,var(--accent-1),var(--accent-2));
-      color: #fff;
-      position:relative;
-      overflow:hidden;
-      box-shadow: 0 12px 60px rgba(37,117,252,0.12);
+    /* glowing blobs */
+    header::before, header::after {
+      content: "";
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.6;
     }
 
-    /* subtle floating shapes */
-    header.premium::before, header.premium::after{
-      content:"";
-      position:absolute;
-      border-radius:50%;
-      filter: blur(70px);
-      opacity:0.18;
-    }
-    header.premium::before{
-      width:360px;height:360px; left:-120px; top:-80px;
+    header::before {
       background: #ffffff;
-    }
-    header.premium::after{
-      width:300px;height:300px; right:-80px; bottom:-120px;
-      background: rgba(0,0,0,0.12);
-      filter: blur(100px);
+      top: -120px;
+      left: -120px;
     }
 
-    .hero-photo{
-      width:156px;height:156px;border-radius:50%;
-      object-fit:cover;border:4px solid rgba(255,255,255,0.18);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.18);
-      flex-shrink:0;
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    header::after {
+      background: #000;
+      bottom: -120px;
+      right: -120px;
+      opacity: 0.3;
     }
 
-    .hero-content h1{
-      margin:0;
-      font-family:"Poppins",sans-serif;
-      font-size:30px;
-      letter-spacing: -0.2px;
-      font-weight:700;
-    }
-    .hero-content p.lead{
-      margin:8px 0 12px 0;
-      color: rgba(255,255,255,0.95);
-      font-weight:500;
-    }
-    .hero-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
-    .chip{
-      background: rgba(255,255,255,0.12);
-      padding:8px 12px;border-radius:999px;font-weight:600;font-size:13px;
-      border:1px solid rgba(255,255,255,0.06);
+    .profile-pic {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid rgba(255,255,255,0.8);
+      box-shadow: 0 6px 30px rgba(0,0,0,0.25);
+      margin-bottom: 25px;
+      position: relative;
+      z-index: 10;
     }
 
-    /* Main sections */
-    main{margin-top:26px}
-    .section{
-      margin-bottom:28px;
-    }
-    .card{
-      background: var(--card-bg);
-      border-radius:14px;
-      padding:22px;
-      border:1px solid var(--glass-border);
-      box-shadow: var(--glass-shadow);
-      backdrop-filter: blur(8px) saturate(120%);
+    header h1 {
+      font-size: 42px;
+      font-weight: 700;
+      margin-top: 10px;
+      animation: fadeSlide 1.2s forwards;
     }
 
-    h2{
-      margin:0 0 14px 0;
-      font-size:20px;
-      color:#0b1220;
-      font-weight:700;
-    }
-    p{margin:0 0 12px 0;color:var(--muted)}
-
-    /* Projects grid */
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
-      gap:18px;
-    }
-    .project{
-      padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.82));
-      border:1px solid rgba(10,12,20,0.04);
-      transition: transform .28s ease, box-shadow .28s ease;
-    }
-    .project:hover{transform:translateY(-8px);box-shadow:0 18px 50px rgba(12,16,40,0.08)}
-    .project h3{margin:0 0 8px 0;font-size:16px}
-    .badge{display:inline-block;font-size:12px;padding:6px 8px;border-radius:8px;background:#eef3ff;color:#2540d6;font-weight:700;margin-top:8px}
-
-    /* Contact / footer */
-    .contact-cta{
-      display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center;
-      margin-top:12px;
-    }
-    .btn{
-      display:inline-block;padding:10px 18px;border-radius:999px;font-weight:700;text-decoration:none;
-      border:2px solid rgba(0,0,0,0.06);
-      transition: all .18s ease;
-      background: #fff;color:#0b1220;
-      box-shadow: 0 8px 30px rgba(10,14,30,0.06);
-    }
-    .btn-primary{
-      background: linear-gradient(90deg,var(--accent-2),var(--accent-1));
-      color:white;border: none;
-      box-shadow: 0 12px 40px rgba(37,117,252,0.12);
-    }
-    .btn:hover{transform:translateY(-4px)}
-
-    /* small screens */
-    @media (max-width:720px){
-      header.premium{flex-direction:column; text-align:center; padding:44px 20px}
-      .hero-photo{width:128px;height:128px}
+    header p {
+      font-size: 20px;
+      opacity: 0.85;
+      animation: fadeSlide 1.4s forwards;
     }
 
-    /* subtle appear animation for content */
-    .appear{opacity:0;transform:translateY(8px);animation:appear .6s forwards}
-    .appear.delay1{animation-delay:.12s}
-    .appear.delay2{animation-delay:.22s}
-    .appear.delay3{animation-delay:.32s}
-    @keyframes appear{to{opacity:1;transform:none}}
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ================= SECTIONS ================= */
+    .section {
+      padding: 80px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .section h2 {
+      font-size: 34px;
+      font-weight: 700;
+      margin-bottom: 30px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section h2::after {
+      content: "";
+      width: 60%;
+      height: 4px;
+      background: linear-gradient(90deg,#6a11cb,#2575fc);
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      border-radius: 4px;
+    }
+
+    /* ================= GLASS PROJECT CARDS ================= */
+    .project-card {
+      backdrop-filter: blur(18px);
+      background: rgba(255,255,255,0.25);
+      border: 1px solid rgba(255,255,255,0.35);
+      padding: 35px;
+      border-radius: 22px;
+      box-shadow: 0 12px 45px rgba(0,0,0,0.18);
+      margin-bottom: 40px;
+      transition: 0.35s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 16px 55px rgba(0,0,0,0.28);
+    }
+
+    .project-card h3 {
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #222;
+    }
+
+    /* ================= CONTACT SECTION ================= */
+    .contact {
+      text-align: center;
+      padding: 100px 20px;
+      margin-top: 40px;
+      background: linear-gradient(135deg,#2575fc,#6a11cb);
+      color: white;
+      border-radius: 40px 40px 0 0;
+    }
+
+    .contact a {
+      display: inline-block;
+      margin: 14px;
+      padding: 14px 30px;
+      font-size: 18px;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      border: 2px solid rgba(255,255,255,0.6);
+      border-radius: 32px;
+      transition: 0.3s;
+    }
+
+    .contact a:hover {
+      background: rgba(255,255,255,0.25);
+      transform: scale(1.05);
+    }
   </style>
 </head>
+
 <body>
-  <div class="wrap">
-    <!-- Header / hero -->
-    <header class="premium">
-      <!-- Put IMG_5008.jpg in the same folder as index.html -->
-      <img class="hero-photo appear" src="IMG_5008.jpg" alt="Ashish Khandelwal photo" onerror="this.style.display='none'">
 
-      <div class="hero-content">
-        <h1 class="appear">Hi — I’m <strong>Ashish Khandelwal</strong></h1>
-        <p class="lead appear delay1">UI/UX Designer • Computer Engineer — I design clear, usable and modern interfaces.</p>
+  <!-- ================= HEADER ================= -->
+  <header>
+    <img src="IMG_5008.jpg" class="profile-pic" alt="Ashish Photo">
+    <h1>Ashish Khandelwal</h1>
+    <p>UI/UX Designer • Creating Modern & Intuitive Digital Experiences</p>
+  </header>
 
-        <div class="hero-meta appear delay2">
-          <div class="chip">Figma • Prototyping</div>
-          <div class="chip">Interaction Design</div>
-          <div class="chip">Usability Testing</div>
-        </div>
+  <!-- ================= ABOUT ================= -->
+  <section class="section">
+    <h2>About Me</h2>
+    <p>
+      I am a detail-oriented UI/UX Designer who blends creativity with an engineering mindset.
+      I design user-friendly interfaces, smooth flows, and modern visuals that leave an impact.
+    </p>
+  </section>
 
-        <div style="margin-top:14px" class="appear delay3">
-          <a class="btn btn-primary" href="mailto:ashishkumarkhandelwal6@gmail.com">Email Me</a>
-          <a class="btn" href="https://www.linkedin.com/in/ashish-khandelwal-5b6411256?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener">LinkedIn</a>
-        </div>
-      </div>
-    </header>
+  <!-- ================= PROJECTS ================= -->
+  <section class="section">
+    <h2>Projects</h2>
 
-    <main>
-      <!-- About -->
-      <section class="section">
-        <div class="card appear">
-          <h2>About</h2>
-          <p>I blend a computer engineering background with product-focused design. I focus on research-led solutions, clear information hierarchy and prototypes that feel real. I enjoy building usable experiences for mobile and web.</p>
-        </div>
-      </section>
+    <div class="project-card">
+      <h3>TravelMate — Travel Planner App</h3>
+      <p>A smart and minimal travel app for planning trips, budgets, and itineraries.</p>
+    </div>
 
-      <!-- Projects -->
-      <section class="section">
-        <h2>Featured projects</h2>
-        <div class="grid appear">
-          <article class="project">
-            <h3>TravelMate — Travel Planner (Mobile)</h3>
-            <p>Consolidated itinerary, budget and notes in one accessible app with quick-edit interactions and a clear trip dashboard.</p>
-            <div class="badge">Mobile • UX Research</div>
-          </article>
+    <div class="project-card">
+      <h3>FitTrack — Fitness Dashboard</h3>
+      <p>A clean, visual fitness dashboard for tracking workouts and progress.</p>
+    </div>
 
-          <article class="project">
-            <h3>FitTrack — Fitness Dashboard (Web)</h3>
-            <p>Minimal dashboard to log workouts and visualize trends with simple charts and rapid add flows for better retention.</p>
-            <div class="badge">Dashboard • Prototyping</div>
-          </article>
+    <div class="project-card">
+      <h3>ShopEase — E-commerce Redesign</h3>
+      <p>A modern redesign that simplifies product browsing and checkout.</p>
+    </div>
 
-          <article class="project">
-            <h3>ShopEase — E-commerce (Mobile)</h3>
-            <p>Redesigned checkout and product pages to reduce friction and simplify filtering — focused on readability and conversions.</p>
-            <div class="badge">E-commerce • Interaction</div>
-          </article>
-        </div>
-      </section>
+  </section>
 
-      <!-- How to view full case study -->
-      <section class="section">
-        <div class="card appear">
-          <h2>Case studies & assets</h2>
-          <p>These are placeholders — when you're ready, replace each project with real screenshots exported from Figma (PNG/JPG) in an `assets/` folder and add longer writeups under `projects/`.</p>
-          <p style="margin-top:8px;color:var(--muted);font-size:13px">Tip: for GitHub Pages, upload this file and the images (IMG_5008.jpg + screenshots) to the repository root or an `assets/` folder and update image paths accordingly.</p>
-        </div>
-      </section>
+  <!-- ================= CONTACT ================= -->
+  <section class="contact">
+    <h2>Contact</h2>
+    <a href="mailto:ashishkumarkhandelwal6@gmail.com">Email</a>
+    <a href="#">LinkedIn</a>
+    <a href="#">Behance</a>
+  </section>
 
-      <!-- Contact -->
-      <section class="section">
-        <div class="card appear">
-          <h2>Contact</h2>
-          <p>Email: <a href="mailto:ashishkumarkhandelwal6@gmail.com">ashishkumarkhandelwal6@gmail.com</a></p>
-          <p>LinkedIn: <a href="https://www.linkedin.com/in/ashish-khandelwal-5b6411256?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener">ashish-khandelwal</a></p>
-          <p>Behance / Dribbble: (placeholder — add when ready)</p>
-
-          <div class="contact-cta" style="margin-top:14px">
-            <a class="btn btn-primary" href="mailto:ashishkumarkhandelwal6@gmail.com">Let's talk</a>
-            <a class="btn" href="#" onclick="alert('Add Behance URL in the code when ready')">Add Behance</a>
-          </div>
-        </div>
-      </section>
-
-      <footer style="text-align:center;color:var(--muted);margin:26px 0;font-size:13px">
-        <div>Built with ❤️ — customize visuals and publish to GitHub Pages</div>
-        <div style="margin-top:6px">If you want, I can also give you the ready repo file list to upload.</div>
-      </footer>
-    </main>
-  </div>
-
-  <script>
-    // small progressive enhancement: show image alt if image missing
-    document.querySelectorAll('.hero-photo').forEach(img=>{
-      img.addEventListener('error', ()=> {
-        // if user's image is missing, optionally show a placeholder avatar or text
-        img.style.display='none';
-      });
-    });
-  </script>
 </body>
 </html>
