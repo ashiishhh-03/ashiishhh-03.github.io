@@ -1,262 +1,361 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ashish Khandelwal — UI/UX Portfolio</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ashish Khandelwal — Premium Portfolio</title>
 
-  <style>
-    /* --------------------
-       GLOBAL DARK THEME
-    --------------------- */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: "Inter", sans-serif;
-      background: #0d0f17;
-      color: #e2e2e2;
-      overflow-x: hidden;
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+
+  body {
+    background: #0c0f14;
+    color: #e5e5e5;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAVBAR */
+  nav {
+    width: 100%;
+    padding: 18px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(14px);
+    position: fixed;
+    top: 0;
+    z-index: 900;
+  }
+
+  nav h1 {
+    font-size: 22px;
+    font-weight: 600;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 20px;
+  }
+
+  .nav-links a {
+    color: #bcd0ff;
+    text-decoration: none;
+    font-size: 16px;
+  }
+
+  .nav-links a:hover {
+    color: #fff;
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+  }
+
+  .hamburger span {
+    width: 28px;
+    height: 3px;
+    background: #fff;
+    border-radius: 5px;
+  }
+
+  @media(max-width: 750px) {
+    .nav-links {
+      display: none;
     }
 
-    /* --------------------
-       PREMIUM HEADER
-    --------------------- */
-    header {
-      text-align: center;
-      padding: 120px 20px;
-      background: linear-gradient(135deg, #141627 0%, #0a0c14 100%);
-      position: relative;
-      overflow: hidden;
+    .hamburger {
+      display: flex;
     }
 
-    /* Floating glows */
-    header::before,
-    header::after {
-      content: "";
-      position: absolute;
-      width: 380px;
-      height: 380px;
-      background: radial-gradient(circle, rgba(118,0,255,0.3), transparent 70%);
-      filter: blur(90px);
-      border-radius: 50%;
-    }
-    header::before { top: -120px; left: -120px; }
-    header::after { bottom: -120px; right: -120px; }
-
-    /* Profile Image */
-    .profile-img {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      border: 4px solid #6f29ff;
-      object-fit: cover;
-      box-shadow: 0 0 30px rgba(113, 0, 255, 0.5);
-      margin-bottom: 20px;
+    #mobileMenu {
+      display: none;
+      position: fixed;
+      top: 70px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      border-radius: 12px;
+      backdrop-filter: blur(12px);
+      z-index: 999;
     }
 
-    h1 {
-      font-size: 42px;
-      margin: 0;
-      font-weight: 700;
-    }
-
-    header p {
-      font-size: 20px;
-      opacity: 0.9;
-      margin-top: 8px;
-    }
-
-    /* --------------------
-       SECTION STYLING
-    --------------------- */
-    .section {
-      max-width: 1000px;
-      margin: auto;
-      padding: 80px 25px;
-    }
-
-    .section h2 {
-      font-size: 34px;
-      margin-bottom: 20px;
-      color: #b785ff;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
-
-    /* --------------------
-       PROJECT CARDS
-    --------------------- */
-    .project-card {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 35px;
-      border-radius: 18px;
-      margin-bottom: 35px;
-      transition: 0.35s ease;
-      box-shadow: 0 0 0 rgba(0,0,0,0);
-    }
-
-    .project-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 12px 40px rgba(120, 0, 255, 0.25);
-      border-color: rgba(120, 0, 255, 0.5);
-    }
-
-    .project-card h3 {
-      font-size: 24px;
-      color: #b47aff;
-      margin-bottom: 10px;
-    }
-
-    .project-card p {
-      opacity: 0.85;
-      line-height: 1.6;
-    }
-
-    /* --------------------
-       CONTACT SECTION
-    --------------------- */
-    .contact-links a {
-      display: inline-block;
-      margin: 12px;
-      padding: 12px 28px;
-      background: rgba(130, 0, 255, 0.2);
-      border: 1px solid rgba(150, 0, 255, 0.4);
-      color: #d6caff;
-      border-radius: 30px;
+    #mobileMenu a {
+      color: #cbd5ff;
       text-decoration: none;
-      font-weight: 600;
-      transition: 0.3s ease;
+      display: block;
+      margin-bottom: 12px;
     }
+  }
 
-    .contact-links a:hover {
-      background: rgba(150, 0, 255, 0.4);
-      transform: scale(1.07);
-    }
+  /* HERO */
+  .hero {
+    padding: 140px 20px 90px;
+    text-align: center;
+  }
 
-    /* Fade reveal on scroll */
-    .fade {
+  .hero img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #fff;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 1.4s ease;
+  }
+
+  .hero h2 {
+    margin-top: 22px;
+    font-size: 42px;
+    font-weight: 600;
+    animation: fadeUp 1.5s ease;
+  }
+
+  .hero p {
+    font-size: 18px;
+    opacity: 0.9;
+    animation: fadeUp 1.8s ease;
+  }
+
+  @keyframes fadeIn {
+    from {
       opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s ease;
     }
-    .visible {
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
       opacity: 1;
       transform: translateY(0);
     }
+  }
 
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 30px;
-      opacity: 0.4;
-      font-size: 14px;
-    }
-  </style>
+  /* SECTIONS */
+  .section {
+    max-width: 950px;
+    margin: 80px auto;
+    padding: 0 25px;
+  }
+
+  .section h2 {
+    font-size: 34px;
+    margin-bottom: 20px;
+  }
+
+  /* PROJECTS */
+  .project-card {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 30px;
+    border-radius: 18px;
+    margin-bottom: 40px;
+    backdrop-filter: blur(10px);
+    transition: 0.3s ease;
+    cursor: pointer;
+  }
+
+  .project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  }
+
+  .project-card h3 {
+    font-size: 24px;
+    color: #9ab4ff;
+    margin-bottom: 10px;
+  }
+
+  .tags span {
+    background: rgba(255, 255, 255, 0.12);
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-right: 6px;
+    font-size: 12px;
+  }
+
+  /* STORY */
+  .story-box {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 25px;
+    border-radius: 16px;
+    margin-top: 20px;
+    line-height: 1.7;
+  }
+
+  /* FOOTER */
+  footer {
+    margin-top: 110px;
+    padding: 50px 20px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(14px);
+    text-align: center;
+  }
+
+  footer a {
+    color: #9ab4ff;
+    margin: 0 10px;
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    text-decoration: underline;
+  }
+</style>
 
 </head>
+
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <img src="IMG_5008.jpg" class="profile-img" alt="Ashish">
+<!-- NAVBAR -->
+<nav>
+  <h1>Ashish</h1>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#story">My Story</a>
+    <a href="#contact">Contact</a>
+  </div>
 
-    <h1>Hi, I'm Ashish Khandelwal</h1>
-    <p>UI/UX Designer • Computer Engineer • Problem Solver</p>
-    <p style="opacity:0.7;">I design meaningful digital experiences that look modern and feel effortless.</p>
-  </header>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
 
-  <!-- ABOUT SECTION -->
-  <section class="section">
-    <h2 class="fade">About Me</h2>
-    <p class="fade">
-      I'm a passionate UI/UX Designer with a background in Computer Engineering.  
-      I blend clean visuals, structured thinking, and user psychology to design interfaces that feel natural.
-      <br><br>
-      I specialize in:  
-      • User Research  
-      • Wireframing + Prototyping  
-      • Mobile App & Web UI  
-      • Design Systems  
-      • Problem-solving through design  
-      <br><br>
-      Tools I use: Figma, Adobe XD, Illustrator, Miro, Notion.
+<div id="mobileMenu">
+  <a href="#about">About</a>
+  <a href="#projects">Projects</a>
+  <a href="#story">My Story</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <img src="IMG_5008.jpg" />
+  <h2>Ashish Khandelwal</h2>
+  <p>UI/UX Designer • Computer Engineer • Problem Solver</p>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <h2>About Me</h2>
+  <p>
+    I’m Ashish, a passionate UI/UX designer from India, specializing in
+    creating modern, clean, and user-friendly digital experiences.
+    With a deep foundation in <strong>Computer Engineering</strong>,
+    I combine logic + creativity to design interfaces that feel natural,
+    smooth, and visually engaging.
+  </p>
+  <br>
+  <p>
+    I focus on visual hierarchy, interaction design, accessibility,
+    mobile-first layouts, and solving design problems with real research.
+    I love designing apps that people enjoy using.
+  </p>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="section">
+  <h2>Projects</h2>
+
+  <div class="project-card" onclick="location.href='travelmate.html'">
+    <h3>TravelMate — Travel Planner App</h3>
+    <p>
+      A full travel assistant with itinerary builder, reminders,
+      collaborative planning, budget insights, packing lists,
+      and trip optimization.
+      <br><strong>Impact:</strong> 35% faster planning.
     </p>
-  </section>
-
-  <!-- PROJECTS SECTION -->
-  <section class="section">
-    <h2 class="fade">Projects</h2>
-
-    <div class="project-card fade">
-      <h3>TravelMate — Travel Planner App</h3>
-      <p>
-        A full travel planning solution that merges itinerary, budget, notes, checklists, weather, and reminders in one clean app.
-        <br><br>
-        **Case Study Includes:**  
-        – User interviews  
-        – Journey mapping  
-        – High-fidelity UI  
-        – Prototype with micro-interactions  
-        – Accessibility improvements  
-        <br><br>
-        ⭐ Result: Users planned trips 40% faster in testing.
-      </p>
+    <div class="tags">
+      <span>Mobile App</span><span>UX Research</span><span>UI/UX</span>
     </div>
+  </div>
 
-    <div class="project-card fade">
-      <h3>FitTrack — Fitness Dashboard Website</h3>
-      <p>
-        A modern fitness dashboard with minimal cards, dynamic progress graphs, workout logging and daily tracking.
-        <br><br>
-        **Focus Areas:**  
-        – Clean data visualization  
-        – Quick input actions  
-        – Custom animations  
-        <br><br>
-        ⭐ Result: UI clarity improved by 50% vs competitors.
-      </p>
+  <div class="project-card" onclick="location.href='fittrack.html'">
+    <h3>FitTrack — Fitness Dashboard</h3>
+    <p>
+      A modern fitness dashboard tracking calories, workouts,
+      streak rewards, charts, and weekly insights.
+      <br><strong>Impact:</strong> Engagement +40%.
+    </p>
+    <div class="tags">
+      <span>Dashboard</span><span>Data Viz</span><span>Interaction</span>
     </div>
+  </div>
 
-    <div class="project-card fade">
-      <h3>ShopEase — E-commerce App Redesign</h3>
-      <p>
-        A complete redesign with new product hierarchy, clean filters, card-based product layout, and a 2-step checkout.
-        <br><br>
-        **Highlights:**  
-        – High readability layout  
-        – Real-time cart updates  
-        – User-friendly interactions  
-        <br><br>
-        ⭐ Result: Checkout completion predicted to increase by 22%.
-      </p>
+  <div class="project-card" onclick="location.href='shopease.html'">
+    <h3>ShopEase — E-commerce Redesign</h3>
+    <p>
+      A redesigned shopping experience focusing on readability,
+      trust-building visuals, clean product layouts, and fast checkout.
+      <br><strong>Impact:</strong> Conversions +22%.
+    </p>
+    <div class="tags">
+      <span>E-commerce</span><span>Redesign</span><span>UI/UX</span>
     </div>
+  </div>
+</section>
 
-  </section>
+<!-- STORY -->
+<section id="story" class="section">
+  <h2>My Story & Experience</h2>
 
-  <!-- CONTACT SECTION -->
-  <section class="section">
-    <h2 class="fade">Contact</h2>
-    <div class="contact-links fade">
-      <a href="mailto:ashishkumarkhandelwal6@gmail.com">Email</a>
-      <a href="#">LinkedIn</a>
-      <a href="#">Behance</a>
-    </div>
-  </section>
+  <div class="story-box">
+    <p>
+      I started as a Computer Engineering student with a fascination
+      for digital interfaces — how they look, flow, and feel.
+      Slowly I discovered UI/UX and fell in love with designing
+      meaningful digital experiences.
+    </p>
+    <br>
+    <p>
+      I learned UI/UX by analyzing top apps, breaking down interfaces,
+      understanding user psychology, and practicing consistently.
+    </p>
+    <br>
+    <p>
+      Today, I focus on clarity, user experience, accessibility,
+      and designing apps that feel smooth, modern, and trustworthy.
+    </p>
+  </div>
+</section>
 
-  <footer>
-    © 2025 Ashish Khandelwal — Portfolio
-  </footer>
+<!-- FOOTER -->
+<footer id="contact">
+  <h3>Let’s work together ✦</h3>
+  <p>
+    <a href="mailto:ashishkumarkhandelwal6@gmail.com">Email</a> |
+    <a href="#">LinkedIn</a> |
+    <a href="#">Behance</a>
+  </p>
+  <small>© 2025 Ashish Khandelwal</small>
+</footer>
 
-  <!-- Scroll reveal animation -->
-  <script>
-    const items = document.querySelectorAll('.fade');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.2 });
-
-    items.forEach(item => observer.observe(item));
-  </script>
+<script>
+  function toggleMenu() {
+    var m = document.getElementById("mobileMenu");
+    m.style.display = m.style.display === "block" ? "none" : "block";
+  }
+</script>
 
 </body>
 </html>
