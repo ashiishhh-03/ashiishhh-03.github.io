@@ -1,218 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ashish Khandelwal — UI/UX Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ashish Khandelwal – UI/UX Portfolio</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ----------------------- */
+/*   GLOBAL STYLES         */
+/* ----------------------- */
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  color: white;
+  overflow-x: hidden;
+}
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #eef1f8;
-      color: #1a1a1a;
-      overflow-x: hidden;
-      line-height: 1.6;
-    }
+/* Aurora Gradient Animation */
+.bg-aurora {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(600px at 10% 20%, rgba(255,0,200,0.25), transparent 60%),
+              radial-gradient(600px at 90% 80%, rgba(0,180,255,0.3), transparent 60%);
+  filter: blur(60px);
+  z-index: -1;
+  animation: auroraMove 12s infinite alternate ease-in-out;
+}
 
-    /* ================= HEADER ================= */
-    header {
-      padding: 120px 20px 140px;
-      text-align: center;
-      background: linear-gradient(135deg,#6a11cb,#2575fc);
-      color: white;
-      position: relative;
-      overflow: hidden;
-    }
+@keyframes auroraMove {
+  0% { filter: blur(60px); transform: translateY(0px); }
+  100% { filter: blur(80px); transform: translateY(40px); }
+}
 
-    /* glowing blobs */
-    header::before, header::after {
-      content: "";
-      position: absolute;
-      width: 350px;
-      height: 350px;
-      border-radius: 50%;
-      filter: blur(120px);
-      opacity: 0.6;
-    }
+/* ----------------------- */
+/*   HEADER SECTION        */
+/* ----------------------- */
 
-    header::before {
-      background: #ffffff;
-      top: -120px;
-      left: -120px;
-    }
+header {
+  text-align: center;
+  padding: 120px 20px 140px;
+  position: relative;
+}
 
-    header::after {
-      background: #000;
-      bottom: -120px;
-      right: -120px;
-      opacity: 0.3;
-    }
+header img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid rgba(255,255,255,0.7);
+  box-shadow: 0 0 30px rgba(0,0,0,0.5), 0 0 50px rgba(120,60,255,0.6);
+  animation: fadeUp 1.2s ease forwards;
+}
 
-    .profile-pic {
-      width: 170px;
-      height: 170px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 5px solid rgba(255,255,255,0.8);
-      box-shadow: 0 6px 30px rgba(0,0,0,0.25);
-      margin-bottom: 25px;
-      position: relative;
-      z-index: 10;
-    }
+header h1 {
+  margin-top: 25px;
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  opacity: 0;
+  animation: fadeUp 1.2s 0.2s forwards;
+}
 
-    header h1 {
-      font-size: 42px;
-      font-weight: 700;
-      margin-top: 10px;
-      animation: fadeSlide 1.2s forwards;
-    }
+header p {
+  font-size: 20px;
+  opacity: 0.85;
+  margin-top: 10px;
+  opacity: 0;
+  animation: fadeUp 1.2s 0.4s forwards;
+}
 
-    header p {
-      font-size: 20px;
-      opacity: 0.85;
-      animation: fadeSlide 1.4s forwards;
-    }
+/* ----------------------- */
+/*   SECTIONS              */
+/* ----------------------- */
 
-    @keyframes fadeSlide {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+.section {
+  max-width: 1000px;
+  margin: auto;
+  padding: 70px 25px;
+}
 
-    /* ================= SECTIONS ================= */
-    .section {
-      padding: 80px 20px;
-      max-width: 1100px;
-      margin: auto;
-    }
+/* ----------------------- */
+/*   PROJECT CARDS         */
+/* ----------------------- */
 
-    .section h2 {
-      font-size: 34px;
-      font-weight: 700;
-      margin-bottom: 30px;
-      position: relative;
-      display: inline-block;
-    }
+.project-card {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 18px;
+  padding: 35px;
+  margin-bottom: 40px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+  transform: translateY(30px);
+  opacity: 0;
+  transition: 0.8s ease;
+}
 
-    .section h2::after {
-      content: "";
-      width: 60%;
-      height: 4px;
-      background: linear-gradient(90deg,#6a11cb,#2575fc);
-      position: absolute;
-      left: 0;
-      bottom: -8px;
-      border-radius: 4px;
-    }
+.project-card.visible {
+  transform: translateY(0px);
+  opacity: 1;
+}
 
-    /* ================= GLASS PROJECT CARDS ================= */
-    .project-card {
-      backdrop-filter: blur(18px);
-      background: rgba(255,255,255,0.25);
-      border: 1px solid rgba(255,255,255,0.35);
-      padding: 35px;
-      border-radius: 22px;
-      box-shadow: 0 12px 45px rgba(0,0,0,0.18);
-      margin-bottom: 40px;
-      transition: 0.35s ease;
-    }
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 50px rgba(0,0,0,0.35);
+}
 
-    .project-card:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 16px 55px rgba(0,0,0,0.28);
-    }
+/* ----------------------- */
+/*   CONTACT SECTION       */
+/* ----------------------- */
 
-    .project-card h3 {
-      font-size: 26px;
-      font-weight: 600;
-      margin-bottom: 10px;
-      color: #222;
-    }
+.contact {
+  text-align: center;
+  padding: 100px 20px;
+}
 
-    /* ================= CONTACT SECTION ================= */
-    .contact {
-      text-align: center;
-      padding: 100px 20px;
-      margin-top: 40px;
-      background: linear-gradient(135deg,#2575fc,#6a11cb);
-      color: white;
-      border-radius: 40px 40px 0 0;
-    }
+.contact a {
+  display: inline-block;
+  margin: 12px;
+  padding: 14px 28px;
+  font-size: 18px;
+  text-decoration: none;
+  color: white;
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 30px;
+  background: rgba(255,255,255,0.1);
+  transition: 0.3s ease;
+}
 
-    .contact a {
-      display: inline-block;
-      margin: 14px;
-      padding: 14px 30px;
-      font-size: 18px;
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      border: 2px solid rgba(255,255,255,0.6);
-      border-radius: 32px;
-      transition: 0.3s;
-    }
+.contact a:hover {
+  background: rgba(255,255,255,0.25);
+  transform: scale(1.08);
+}
 
-    .contact a:hover {
-      background: rgba(255,255,255,0.25);
-      transform: scale(1.05);
-    }
-  </style>
+/* ----------------------- */
+/*   ANIMATIONS            */
+/* ----------------------- */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+</style>
 </head>
 
 <body>
 
-  <!-- ================= HEADER ================= -->
-  <header>
-    <img src="IMG_5008.jpg" class="profile-pic" alt="Ashish Photo">
-    <h1>Ashish Khandelwal</h1>
-    <p>UI/UX Designer • Creating Modern & Intuitive Digital Experiences</p>
-  </header>
+<div class="bg-aurora"></div>
 
-  <!-- ================= ABOUT ================= -->
-  <section class="section">
-    <h2>About Me</h2>
-    <p>
-      I am a detail-oriented UI/UX Designer who blends creativity with an engineering mindset.
-      I design user-friendly interfaces, smooth flows, and modern visuals that leave an impact.
-    </p>
-  </section>
+<header>
+  <img src="IMG_5008.jpg" alt="Ashish">
+  <h1>Hi, I'm Ashish</h1>
+  <p>UI/UX Designer • Creating Elegant & Smart Experiences</p>
+</header>
 
-  <!-- ================= PROJECTS ================= -->
-  <section class="section">
-    <h2>Projects</h2>
+<section class="section">
+  <h2>About Me</h2>
+  <div class="project-card">
+    <p>I create clean, modern and highly intuitive digital products.  
+       With a background in Computer Engineering + UI/UX,  
+       I combine technical thinking with aesthetic design.</p>
+  </div>
+</section>
 
-    <div class="project-card">
-      <h3>TravelMate — Travel Planner App</h3>
-      <p>A smart and minimal travel app for planning trips, budgets, and itineraries.</p>
-    </div>
+<section class="section">
+  <h2>Projects</h2>
 
-    <div class="project-card">
-      <h3>FitTrack — Fitness Dashboard</h3>
-      <p>A clean, visual fitness dashboard for tracking workouts and progress.</p>
-    </div>
+  <div class="project-card fade">
+    <h3>TravelMate – Travel Planning App</h3>
+    <p>A fast, clean and modern travel organiser with itinerary, reminders & budget manager.</p>
+  </div>
 
-    <div class="project-card">
-      <h3>ShopEase — E-commerce Redesign</h3>
-      <p>A modern redesign that simplifies product browsing and checkout.</p>
-    </div>
+  <div class="project-card fade">
+    <h3>FitTrack – Fitness Dashboard</h3>
+    <p>Minimal fitness website with progress analytics, workout logs and dynamic insights.</p>
+  </div>
 
-  </section>
+  <div class="project-card fade">
+    <h3>ShopEase – E-commerce Redesign</h3>
+    <p>Smoother shopping experience with redesigned product page & two-step checkout.</p>
+  </div>
 
-  <!-- ================= CONTACT ================= -->
-  <section class="contact">
-    <h2>Contact</h2>
-    <a href="mailto:ashishkumarkhandelwal6@gmail.com">Email</a>
-    <a href="#">LinkedIn</a>
-    <a href="#">Behance</a>
-  </section>
+</section>
+
+<section class="contact">
+  <h2>Contact</h2>
+  <a href="mailto:ashishkumarkhandelwal6@gmail.com">Email</a>
+  <a href="#">LinkedIn</a>
+  <a href="#">Behance</a>
+</section>
+
+<script>
+// fade animations
+const items = document.querySelectorAll(".project-card");
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add("visible");
+    }
+  });
+}, { threshold: 0.2 });
+
+items.forEach(i => observer.observe(i));
+</script>
 
 </body>
 </html>
