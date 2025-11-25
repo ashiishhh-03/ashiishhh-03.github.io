@@ -3,109 +3,208 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ashish Khandelwal — UI/UX Portfolio</title>
+  <title>Ashish Khandelwal – UI/UX Designer</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: "Inter", sans-serif;
-      background: #f7f9fc;
-      color: #1a1a1a;
-      overflow-x: hidden;
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins', sans-serif;
     }
 
-    header {
-      padding: 80px 20px;
-      text-align: center;
-      background: white;
+    body{
+      background:#f4f6fa;
+      color:#1a1a1a;
     }
 
-    header h1 {
-      font-size: 40px;
-      margin: 0;
-      font-weight: 700;
+    /* HERO SECTION */
+    .hero{
+      height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      text-align:center;
+      padding:20px;
     }
 
-    header p {
-      font-size: 18px;
-      margin-top: 10px;
+    .hero h1{
+      font-size:48px;
+      font-weight:700;
+      animation:fadeUp 1s ease forwards;
+      opacity:0;
     }
 
-    .section {
-      padding: 60px 20px;
-      max-width: 900px;
-      margin: auto;
+    .hero p{
+      font-size:20px;
+      margin-top:10px;
+      animation:fadeUp 1.2s ease forwards;
+      opacity:0;
     }
 
-    h2 {
-      font-size: 32px;
-      margin-bottom: 20px;
+    @keyframes fadeUp{
+      from{opacity:0; transform:translateY(20px);}
+      to{opacity:1; transform:translateY(0);}
     }
 
-    .project-card {
-      background: white;
-      padding: 25px;
-      border-radius: 16px;
-      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
-      margin-bottom: 25px;
+    /* SECTION GLOBAL */
+    section{
+      padding:70px 20px;
+      max-width:1100px;
+      margin:auto;
     }
 
-    .contact {
-      text-align: center;
-      padding: 40px 20px;
+    section h2{
+      font-size:36px;
+      margin-bottom:20px;
+      font-weight:700;
+      text-align:left;
+      opacity:0;
+      transform:translateY(30px);
+      transition:.7s ease;
     }
 
-    .contact a {
-      display: inline-block;
-      margin: 10px;
-      font-size: 18px;
-      color: #3a7bff;
-      text-decoration: none;
-      font-weight: 600;
+    .show{
+      opacity:1 !important;
+      transform:translateY(0) !important;
     }
+
+    /* ABOUT */
+    .about p{
+      font-size:18px;
+      line-height:1.7;
+      color:#444;
+    }
+
+    /* PROJECTS */
+    .projects-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+      gap:25px;
+      margin-top:20px;
+    }
+
+    .project-card{
+      background:white;
+      padding:25px;
+      border-radius:16px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.08);
+      transition:.3s;
+    }
+
+    .project-card:hover{
+      transform:translateY(-8px);
+      box-shadow:0 10px 25px rgba(0,0,0,0.12);
+    }
+
+    .project-card h3{
+      margin-bottom:10px;
+      font-weight:600;
+    }
+
+    .project-card p{
+      color:#555;
+      font-size:16px;
+      margin-bottom:8px;
+    }
+
+    /* CONTACT */
+    .contact a{
+      display:block;
+      margin:6px 0;
+      font-size:18px;
+      color:#3b6bff;
+      font-weight:600;
+      text-decoration:none;
+    }
+
+    /* FOOTER */
+    footer{
+      text-align:center;
+      padding:20px;
+      background:white;
+      color:#555;
+      margin-top:50px;
+    }
+
   </style>
 </head>
 <body>
-  <header>
-    <h1>Hi, I’m Ashish</h1>
-    <p>UI/UX Designer crafting intuitive digital experiences.</p>
-  </header>
 
-  <section class="section">
+  <!-- HERO -->
+  <div class="hero">
+    <h1>Hi, I'm Ashish 👋</h1>
+    <p>UI/UX Designer crafting clean, elegant & user-focused digital experiences.</p>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
     <h2>About Me</h2>
-    <p>
-      I design clean and user-focused interfaces, blending creativity with my engineering mindset. 
-      I enjoy solving real problems through logical flows, thoughtful layouts, and simple interactions.
-    </p>
+    <div class="about">
+      <p>
+        I am a UI/UX Designer with a strong sense of clean layout, logical user flows and
+        modern interactions. With my background in Computer Engineering, I combine creativity
+        and problem-solving to design meaningful digital products.
+      </p>
+    </div>
   </section>
 
-  <section class="section">
+  <!-- PROJECTS -->
+  <section id="projects">
     <h2>Projects</h2>
 
-    <div class="project-card">
-      <h3>TravelMate — Travel Planner App</h3>
-      <p>A mobile app that simplifies full trip planning with itinerary, budget tools, and quick edits.</p>
-      <p><strong>Impact:</strong> Users planned trips 30% faster.</p>
-    </div>
+    <div class="projects-container">
 
-    <div class="project-card">
-      <h3>FitTrack — Fitness Dashboard Website</h3>
-      <p>Minimal dashboard to log workouts and visualize daily progress using clean charts.</p>
-      <p><strong>Impact:</strong> Interface usability improved by 40%.</p>
-    </div>
+      <div class="project-card">
+        <h3>TravelMate – Travel Planner App</h3>
+        <p>A smooth all-in-one app for itinerary, budget & trip planning.</p>
+        <p><strong>Impact:</strong> 30% faster planning in user tests.</p>
+      </div>
 
-    <div class="project-card">
-      <h3>ShopEase — E-commerce App Redesign</h3>
-      <p>Redesigned flows, cleaner product pages, and a modern 2-step checkout for smoother shopping.</p>
-      <p><strong>Impact:</strong> Projected 20% higher checkout completion.</p>
+      <div class="project-card">
+        <h3>FitTrack – Fitness Dashboard</h3>
+        <p>Minimal dashboard to track workouts & progress visually.</p>
+        <p><strong>Impact:</strong> 40% better usability.</p>
+      </div>
+
+      <div class="project-card">
+        <h3>ShopEase – E-commerce Redesign</h3>
+        <p>Cleaner product pages & simpler 2-step checkout.</p>
+        <p><strong>Impact:</strong> 20% improvement in conversion.</p>
+      </div>
+
     </div>
   </section>
 
-  <section class="contact">
+  <!-- CONTACT -->
+  <section id="contact">
     <h2>Contact</h2>
     <p>Email: <a href="mailto:ashishkumarkhandelwal6@gmail.com">ashishkumarkhandelwal6@gmail.com</a></p>
-    <p>LinkedIn: <a href="#">(Add later)</a></p>
-    <p>Behance: <a href="#">(Add later)</a></p>
+    <p>LinkedIn: <a href="#">(Add link later)</a></p>
+    <p>Behance: <a href="#">(Add link later)</a></p>
   </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © Ashish Khandelwal – UI/UX Designer
+  </footer>
+
+  <script>
+    const sections=document.querySelectorAll("section h2");
+    const observer=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add("show");
+        }
+      });
+    },{threshold:0.2});
+
+    sections.forEach(sec=>observer.observe(sec));
+  </script>
+
 </body>
-    </html>
+</html>
