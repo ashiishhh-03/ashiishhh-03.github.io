@@ -1,262 +1,169 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ashish Khandelwal — UI/UX Portfolio</title>
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ashish Khandelwal — UI/UX Portfolio (V10)</title>
   <style>
-    /* --------------------
-       GLOBAL DARK THEME
-    --------------------- */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: "Inter", sans-serif;
-      background: #0d0f17;
-      color: #e2e2e2;
-      overflow-x: hidden;
+    /* Animated gradient background */
+    :root{
+      --bg1: #0f172a; /* dark navy */
+      --glass: rgba(255,255,255,0.06);
+      --glass-2: rgba(255,255,255,0.08);
+      --accent1: #6a11cb;
+      --accent2: #2575fc;
+    }
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;}
+    body{
+      background: radial-gradient(800px 600px at 10% 10%, rgba(99,102,241,0.12), transparent),
+                  radial-gradient(700px 500px at 90% 90%, rgba(37,117,252,0.10), transparent),
+                  var(--bg1);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      display:flex;align-items:center;justify-content:center;padding:32px;
+      min-height:100vh;
+      overflow:auto;
     }
 
-    /* --------------------
-       PREMIUM HEADER
-    --------------------- */
-    header {
-      text-align: center;
-      padding: 120px 20px;
-      background: linear-gradient(135deg, #141627 0%, #0a0c14 100%);
-      position: relative;
-      overflow: hidden;
+    /* animated moving gradient overlay */
+    .gradient-anim{
+      position:fixed; inset:0; pointer-events:none; z-index:0;
+      background: linear-gradient(120deg, rgba(106,17,203,0.08), rgba(37,117,252,0.08), rgba(255,118,117,0.04));
+      mix-blend-mode: screen;
+      animation: moveBG 18s linear infinite;
+      filter: blur(40px) saturate(120%);
+    }
+    @keyframes moveBG {
+      0%{transform: translate3d(-10%, -5%,0) rotate(0deg);}
+      50%{transform: translate3d(10%, 5%,0) rotate(10deg);}
+      100%{transform: translate3d(-10%, -5%,0) rotate(0deg);}
     }
 
-    /* Floating glows */
-    header::before,
-    header::after {
-      content: "";
-      position: absolute;
-      width: 380px;
-      height: 380px;
-      background: radial-gradient(circle, rgba(118,0,255,0.3), transparent 70%);
-      filter: blur(90px);
-      border-radius: 50%;
-    }
-    header::before { top: -120px; left: -120px; }
-    header::after { bottom: -120px; right: -120px; }
+    /* Container */
+    .wrap{position:relative;z-index:1;max-width:1000px;width:100%;display:grid;grid-template-columns: 1fr 420px;gap:28px;align-items:start;}
+    @media (max-width:920px){ .wrap{grid-template-columns:1fr; padding:0 8px;} }
 
-    /* Profile Image */
-    .profile-img {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      border: 4px solid #6f29ff;
-      object-fit: cover;
-      box-shadow: 0 0 30px rgba(113, 0, 255, 0.5);
-      margin-bottom: 20px;
+    /* Glass card */
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.04);
+      border-radius:18px;
+      padding:28px;
+      backdrop-filter: blur(10px) saturate(120%);
+      box-shadow: 0 10px 40px rgba(2,6,23,0.6);
     }
 
-    h1 {
-      font-size: 42px;
-      margin: 0;
-      font-weight: 700;
-    }
+    header.hero{display:flex;gap:18px;align-items:center;}
+    .avatar{width:120px;height:120px;border-radius:20px;overflow:hidden;border:3px solid rgba(255,255,255,0.08);flex-shrink:0;box-shadow:0 8px 30px rgba(38,64,120,0.35);}
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block;}
 
-    header p {
-      font-size: 20px;
-      opacity: 0.9;
-      margin-top: 8px;
-    }
+    h1{margin:0;font-size:28px;line-height:1.05}
+    .role{color:#bcd0ff;margin-top:8px;font-size:14px}
 
-    /* --------------------
-       SECTION STYLING
-    --------------------- */
-    .section {
-      max-width: 1000px;
-      margin: auto;
-      padding: 80px 25px;
-    }
+    /* stats row */
+    .meta{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap}
+    .pill{background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.03);font-size:13px;color:#d7e7ff}
 
-    .section h2 {
-      font-size: 34px;
-      margin-bottom: 20px;
-      color: #b785ff;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+    /* Projects column (left) */
+    .projects-list{display:flex;flex-direction:column;gap:18px;margin-top:18px}
+    .project{
+      padding:18px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.03); transition:transform .28s ease, box-shadow .28s ease;
     }
+    .project:hover{transform: translateY(-8px); box-shadow:0 18px 50px rgba(2,6,23,0.6);}
 
-    /* --------------------
-       PROJECT CARDS
-    --------------------- */
-    .project-card {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 35px;
-      border-radius: 18px;
-      margin-bottom: 35px;
-      transition: 0.35s ease;
-      box-shadow: 0 0 0 rgba(0,0,0,0);
-    }
+    .project h3{margin:0;font-size:18px}
+    .project p{margin:8px 0 0;color:#cbd9ff;font-size:14px}
+    .project .tags{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+    .tag{font-size:12px;padding:6px 8px;border-radius:999px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);color:#dbe8ff}
 
-    .project-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 12px 40px rgba(120, 0, 255, 0.25);
-      border-color: rgba(120, 0, 255, 0.5);
-    }
+    /* right column (profile card) */
+    .side{position:sticky;top:28px}
+    .profile-card{display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center}
+    .profile-card h4{margin:0}
+    .profile-card p{margin:0;color:#cbd9ff;font-size:14px}
 
-    .project-card h3 {
-      font-size: 24px;
-      color: #b47aff;
-      margin-bottom: 10px;
+    /* CTA / links */
+    .links{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;justify-content:center}
+    .btn{
+      padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,0.06);background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));color:#eaf2ff;font-weight:600;font-size:14px;text-decoration:none;
+      transition:transform .18s ease, background .18s ease;
     }
+    .btn:hover{transform:translateY(-4px);background:linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));}
 
-    .project-card p {
-      opacity: 0.85;
-      line-height: 1.6;
-    }
+    /* small footer */
+    .footer{margin-top:18px;text-align:center;color:#9fb2ff;font-size:13px}
 
-    /* --------------------
-       CONTACT SECTION
-    --------------------- */
-    .contact-links a {
-      display: inline-block;
-      margin: 12px;
-      padding: 12px 28px;
-      background: rgba(130, 0, 255, 0.2);
-      border: 1px solid rgba(150, 0, 255, 0.4);
-      color: #d6caff;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: 0.3s ease;
-    }
-
-    .contact-links a:hover {
-      background: rgba(150, 0, 255, 0.4);
-      transform: scale(1.07);
-    }
-
-    /* Fade reveal on scroll */
-    .fade {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s ease;
-    }
-    .visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 30px;
-      opacity: 0.4;
-      font-size: 14px;
-    }
   </style>
-
 </head>
 <body>
+  <div class="gradient-anim" aria-hidden="true"></div>
 
-  <!-- HEADER -->
-  <header>
-    <img src="IMG_5008.jpg" class="profile-img" alt="Ashish">
+  <main class="wrap">
+    <!-- LEFT: projects/content -->
+    <div>
+      <div class="card">
+        <header class="hero">
+          <div class="avatar">
+            <img src="./IMG_5008.jpg" alt="Ashish Khandelwal">
+          </div>
+          <div>
+            <h1>Ashish Khandelwal</h1>
+            <div class="role">UI/UX Designer • Computer Engineer</div>
+            <div class="meta">
+              <div class="pill">Figma · Tailwind · Framer</div>
+              <div class="pill">Research · Prototyping</div>
+              <div class="pill">India</div>
+              <div class="pill">ashishkumarkhandelwal6@gmail.com</div>
+            </div>
+          </div>
+        </header>
 
-    <h1>Hi, I'm Ashish Khandelwal</h1>
-    <p>UI/UX Designer • Computer Engineer • Problem Solver</p>
-    <p style="opacity:0.7;">I design meaningful digital experiences that look modern and feel effortless.</p>
-  </header>
+        <section class="projects-list" aria-labelledby="projects">
+          <h2 id="projects" style="margin:10px 0 0;color:#cfe0ff;font-size:16px">Selected Projects</h2>
 
-  <!-- ABOUT SECTION -->
-  <section class="section">
-    <h2 class="fade">About Me</h2>
-    <p class="fade">
-      I'm a passionate UI/UX Designer with a background in Computer Engineering.  
-      I blend clean visuals, structured thinking, and user psychology to design interfaces that feel natural.
-      <br><br>
-      I specialize in:  
-      • User Research  
-      • Wireframing + Prototyping  
-      • Mobile App & Web UI  
-      • Design Systems  
-      • Problem-solving through design  
-      <br><br>
-      Tools I use: Figma, Adobe XD, Illustrator, Miro, Notion.
-    </p>
-  </section>
+          <article class="project" id="travelmate">
+            <h3>TravelMate — Travel Planner App</h3>
+            <p>All-in-one trip planner: itinerary, budgeting, packing lists and quick edits. User research, low/mid/high fidelity flow, and prototype testing.</p>
+            <div class="tags"><span class="tag">Mobile App</span><span class="tag">Research</span><span class="tag">Prototyping</span></div>
+          </article>
 
-  <!-- PROJECTS SECTION -->
-  <section class="section">
-    <h2 class="fade">Projects</h2>
+          <article class="project" id="fittrack">
+            <h3>FitTrack — Fitness Dashboard</h3>
+            <p>Minimal dashboard for tracking workouts, calories and goals. Focus on readable charts and quick logging interactions.</p>
+            <div class="tags"><span class="tag">Web App</span><span class="tag">Data Viz</span><span class="tag">Usability</span></div>
+          </article>
 
-    <div class="project-card fade">
-      <h3>TravelMate — Travel Planner App</h3>
-      <p>
-        A full travel planning solution that merges itinerary, budget, notes, checklists, weather, and reminders in one clean app.
-        <br><br>
-        **Case Study Includes:**  
-        – User interviews  
-        – Journey mapping  
-        – High-fidelity UI  
-        – Prototype with micro-interactions  
-        – Accessibility improvements  
-        <br><br>
-        ⭐ Result: Users planned trips 40% faster in testing.
-      </p>
+          <article class="project" id="shopease">
+            <h3>ShopEase — E-commerce Redesign</h3>
+            <p>Product page hierarchy, fast filters and a progressive 2-step checkout to reduce drop-offs and increase conversions.</p>
+            <div class="tags"><span class="tag">E-commerce</span><span class="tag">Conversion</span><span class="tag">UI</span></div>
+          </article>
+
+        </section>
+
+        <div class="footer">Want full case studies and Figma links? Add them under each project (I can provide HTML blocks).</div>
+      </div>
     </div>
 
-    <div class="project-card fade">
-      <h3>FitTrack — Fitness Dashboard Website</h3>
-      <p>
-        A modern fitness dashboard with minimal cards, dynamic progress graphs, workout logging and daily tracking.
-        <br><br>
-        **Focus Areas:**  
-        – Clean data visualization  
-        – Quick input actions  
-        – Custom animations  
-        <br><br>
-        ⭐ Result: UI clarity improved by 50% vs competitors.
-      </p>
-    </div>
+    <!-- RIGHT: profile / contact -->
+    <aside class="side">
+      <div class="card profile-card">
+        <img src="./IMG_5008.jpg" alt="Ashish" style="width:120px;height:120px;border-radius:12px;object-fit:cover;border:3px solid rgba(255,255,255,0.06)">
+        <h4>Ashish Khandelwal</h4>
+        <p>Designing clear, measurable and beautiful digital experiences. I pair engineering thinking with visual design.</p>
 
-    <div class="project-card fade">
-      <h3>ShopEase — E-commerce App Redesign</h3>
-      <p>
-        A complete redesign with new product hierarchy, clean filters, card-based product layout, and a 2-step checkout.
-        <br><br>
-        **Highlights:**  
-        – High readability layout  
-        – Real-time cart updates  
-        – User-friendly interactions  
-        <br><br>
-        ⭐ Result: Checkout completion predicted to increase by 22%.
-      </p>
-    </div>
+        <div class="links">
+          <a class="btn" href="mailto:ashishkumarkhandelwal6@gmail.com">Email</a>
+          <a class="btn" href="https://www.linkedin.com/in/ashish-khandelwal-5b6411256?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">LinkedIn</a>
+          <a class="btn" href="#" target="_blank">Behance</a>
+        </div>
 
-  </section>
+        <div style="margin-top:12px;font-size:13px;color:#9fb2ff">© <span id="yr"></span> Ashish K.</div>
+      </div>
+    </aside>
+  </main>
 
-  <!-- CONTACT SECTION -->
-  <section class="section">
-    <h2 class="fade">Contact</h2>
-    <div class="contact-links fade">
-      <a href="mailto:ashishkumarkhandelwal6@gmail.com">Email</a>
-      <a href="#">LinkedIn</a>
-      <a href="#">Behance</a>
-    </div>
-  </section>
-
-  <footer>
-    © 2025 Ashish Khandelwal — Portfolio
-  </footer>
-
-  <!-- Scroll reveal animation -->
-  <script>
-    const items = document.querySelectorAll('.fade');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.2 });
-
-    items.forEach(item => observer.observe(item));
-  </script>
-
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
 </body>
-</html>
+            </html>
